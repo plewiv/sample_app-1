@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Ruby on Rails Tutorial Sample App | <%= @title %></title>
+    <title><%= title %></title>
     <%= csrf_meta_tag %>
-    <!--
-    Now that we have a site-wide layout, we’ve also taken this opportunity to add a security feature to each page. Listing 3.28 adds the code
-
-	\<%= csrf_meta_tag %>
-	which uses the Rails method csrf_meta_tag to prevent cross-site request forgery (CSRF), a type of malicious web attack. Don’t worry about the details (I don’t); just know that Rails is working hard to keep your application secure.
-    -->
+    <%= render 'layouts/stylesheets' %>
   </head>
   <body>
-    <%= yield %>
-    <!--
-    This code is responsible for inserting the contents of each page into the layout. As with <%= @title %>, the <% ... %> tags indicate Embedded Ruby, and the equals sign in <%= ... %> ensures that the results of evaluating the expression are inserted at that exact point in the template. Don’t worry about the meaning of the word “yield” in this context;24 what matters is that using this layout ensures that visiting the page /pages/home converts the contents of home.html.erb to HTML and then inserts it in place of <%= yield %>.
-    -->
+    <div class="container">
+      <%= render 'layouts/header' %>
+      <section class="round">
+        <%= yield %>
+      </section>
+      <%= render 'layouts/footer' %>
+    </div>
   </body>
 </html>
